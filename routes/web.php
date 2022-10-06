@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SectionsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,7 @@ Auth::routes(["register"=>false]);
 
 
 
-
+Route::resource("products",ProductsController::class);
 Route::resource('sections',SectionsController::class);
 Route::resource('invoices',InvoicesController::class);
 Route::resource('/{page}',AdminController::class);

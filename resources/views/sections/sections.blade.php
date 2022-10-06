@@ -205,7 +205,7 @@ aria-hidden="true">
                         <form action="{{ route('sections.store') }}" method="post">
                             {{ csrf_field() }}
                         <div class="form-group">
-                            <input type="text"  id="id" name="id" value="">
+                           
                             <label for="exampleInputEmail1">اسم القسم</label>
                             <input type="text" class="form-control" id="section_name" name="section_name">
                         </div>
@@ -253,6 +253,7 @@ aria-hidden="true">
         var section_name = button.data('section_name')
         var description = button.data('description')
         var modal = $(this)
+
         modal.find('.modal-body #id').val(id);
         modal.find('.modal-body #section_name').val(section_name);
         modal.find('.modal-body #description').val(description);

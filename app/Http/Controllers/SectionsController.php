@@ -130,8 +130,11 @@ class SectionsController extends Controller
      * @param  \App\Models\sections  $sections
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sections $sections)
+    public function destroy(Request $request)
     {
-        //
+        $id=$request->id;
+        sections::find($id)->delete();
+        session()->flash("delete");
+        return redirect("/sections");
     }
 }

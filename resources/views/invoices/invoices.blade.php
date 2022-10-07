@@ -100,6 +100,15 @@ List Facture
 
                                                 </td>
                                                 <td>{{ $invoice->note }}</td>
+                                                <td><button aria-expanded="false" aria-haspopup="true"
+                                                    class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
+                                                    type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
+
+                                                    <div class="dropdown-menu tx-13">
+                                                            <a class="dropdown-item"
+                                                                href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل
+                                                                الفاتورة</a></div>
+                                                </td>
 
                                             </tr>
 

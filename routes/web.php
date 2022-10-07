@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InvoicesAttachmentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SectionsController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +32,8 @@ Auth::routes(["register"=>false]);
 
 
 
-
-
+Route::get('/edit_invoice/{id}', [InvoicesController::class,"edit"]);
+Route::resource('InvoiceAttachments', InvoicesAttachmentsController::class);
 Route::resource('invoices',InvoicesController::class);
 Route::get('section/{id}',[InvoicesController::class,"getproducts"]);
 Route::get('InvoicesDetails/{id}',[InvoicesDetailsController::class,"edit"]);

@@ -96,10 +96,10 @@ class InvoicesDetailsController extends Controller
     public function get_file($invoice_number,$file_name)
 
     {
-        return Storage::download('/public/Attachments/'.$invoice_number.'/'.$file_name );
 
-     //   $contents= Storage::disk('public_locale')->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
-       // return response()->download( $contents);
+
+       // $contents= Storage::disk('public_locale')->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
+       //return response()->download( $contents);
     }
 
     public function open_file($invoice_number,$file_name){

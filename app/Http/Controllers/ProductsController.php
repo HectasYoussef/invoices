@@ -6,6 +6,7 @@ use App\Models\products;
 use App\Models\sections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
@@ -97,11 +98,10 @@ class ProductsController extends Controller
     {
 
         $validated = $request->validate([
-            'Product_name' => 'required|unique:products|max:255',
+            'Product_name' => 'required|max:255',
             'description' => 'required',
         ],[
             'Product_name.required'=>'entrer le nom de section ',
-            'Product_name.unique'=>'le nom de section et deja utuliser',
             'description'=>'entrer le description'
          ]);
 
@@ -109,7 +109,7 @@ class ProductsController extends Controller
     $id = sections::where('section_name',$request->section_name)->first()->id;
     $product = products::findorFail($request->pro_id);
 
-            $product::create(
+            $product->update(
                 [
 
                     'Product_name'=>$request->Product_name,
@@ -136,4 +136,10 @@ class ProductsController extends Controller
         session()->flash('delete', 'تم حذف المنتج بنجاح');
         return back();
     }
+
+   
+
+
+
+
 }

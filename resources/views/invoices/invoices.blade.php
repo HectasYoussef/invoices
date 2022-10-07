@@ -27,38 +27,44 @@ List Facture
 				<!-- row -->
 				<div class="row">
 
-                        <div class="col-xl-12">
-                            <div class="card mg-b-20">
-                                <div class="card-header pb-0">
-                                    <div class="d-flex justify-content-between">
-                                        <h4 class="card-title mg-b-0">Bordered Table</h4>
-                                        <i class="mdi mdi-dots-horizontal text-gray"></i>
-                                    </div>
-                                    <p class="tx-12 tx-gray-500 mb-2">Example of Valex Bordered Table.. <a href="">Learn more</a></p>
+                    <div class="col-xl-12">
+                        <div class="card mg-b-20">
+                            <div class="card-header pb-0">
+                                <div class="d-flex justify-content-between">
+                                    <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
+                                        class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
                                 </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table id="example" class="table key-buttons text-md-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th class="border-bottom-0">#</th>
-                                                    <th class="border-bottom-0">رقم الفاتوره</th>
-                                                    <th class="border-bottom-0">تاريخ الفاتوره</th>
-                                                    <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                                    <th class="border-bottom-0">المنتج</th>
-                                                    <th class="border-bottom-0">القسم</th>
-                                                    <th class="border-bottom-0">الخصم</th>
-                                                    <th class="border-bottom-0">نسبة الضرب</th>
-                                                    <th class="border-bottom-0">قيمه الضرب</th>
-                                                    <th class="border-bottom-0">الاجمالي</th>
-                                                    <th class="border-bottom-0">الحاله</th>
-                                                    <th class="border-bottom-0">الملاحظه</th>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'
+                                        style="text-align: center">
+                                        <thead>
+                                            <tr>
+
+                                                <th class="border-bottom-0">#</th>
+                                                <th class="border-bottom-0">رقم الفاتوره</th>
+                                                <th class="border-bottom-0">تاريخ الفاتوره</th>
+                                                <th class="border-bottom-0">تاريخ الاستحقاق</th>
+                                                <th class="border-bottom-0">المنتج</th>
+                                                <th class="border-bottom-0">القسم</th>
+                                                <th class="border-bottom-0">الخصم</th>
+                                                <th class="border-bottom-0">نسبة الضرب</th>
+                                                <th class="border-bottom-0">قيمه الضرب</th>
+                                                <th class="border-bottom-0">الاجمالي</th>
+                                                <th class="border-bottom-0">الحاله</th>
+                                                <th class="border-bottom-0">الملاحظه</th>
 
 
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+
+
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                                 <tr>
                                                     <td>Tiger Nixon</td>
                                                     <td>System Architect</td>
@@ -74,12 +80,13 @@ List Facture
                                                     <td>2011/04/25</td>
 
                                                 </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
 

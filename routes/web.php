@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
 Auth::routes(["register"=>false]);
 //Route::get('/{page}', [AdminController::class,"index"]);
 
@@ -29,10 +30,12 @@ Auth::routes(["register"=>false]);
 
 
 
-
-Route::resource("products",ProductsController::class);
-Route::resource('sections',SectionsController::class);
 Route::resource('invoices',InvoicesController::class);
+Route::get('section/{id}',[InvoicesController::class,"getproducts"]);
+Route::resource("products",ProductsController::class);
+
+Route::resource('sections',SectionsController::class);
+
 Route::resource('/{page}',AdminController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

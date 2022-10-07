@@ -29,7 +29,7 @@
 @endsection
 @section('content')
 
-@section('content')@if (session()->has('Add'))
+@if (session()->has('Add'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>{{ session()->get('Add') }}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -38,7 +38,7 @@
     </div>
 @endif
 
-@section('content')@if (session()->has('Edit'))
+@if (session()->has('Edit'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>{{ session()->get('Edit') }}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -47,7 +47,7 @@
     </div>
 @endif
 
-@section('content')@if (session()->has('delete'))
+@if (session()->has('delete'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>{{ session()->get('delete') }}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

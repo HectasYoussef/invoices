@@ -48,6 +48,10 @@ class ProductsController extends Controller
             'Product_name.unique'=>'le nom de section et deja utuliser',
             'description'=>'entrer le description'
          ]);
+
+
+
+
             products::create(
                 [
 
@@ -91,7 +95,31 @@ class ProductsController extends Controller
      */
     public function update(Request $request, products $products)
     {
-        //
+
+        $validated = $request->validate([
+            'Product_name' => 'required|unique:products|max:255',
+            'description' => 'required',
+        ],[
+            'Product_name.required'=>'entrer le nom de section ',
+            'Product_name.unique'=>'le nom de section et deja utuliser',
+            'description'=>'entrer le description'
+         ]);
+
+
+    $id = sections::where('section_name',$request->section_name)->first()->id;
+    $product = products::findorFail($request->pro_id);
+
+            $product::create(
+                [
+
+                    'Product_name'=>$request->Product_name,
+                    'description'=>$request->description,
+                    'section_id'=>$id,
+
+                ]
+                );
+                session()->flash('Edit',"ajout avec succes");
+                return redirect("/products");
     }
 
     /**
@@ -100,8 +128,12 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(products $products)
+    public function destroy(Request $request)
     {
-        //
+
+        $Products = Products::findOrFail($request->pro_id);
+        $Products->delete();
+        session()->flash('delete', 'تم حذف المنتج بنجاح');
+        return back();
     }
 }

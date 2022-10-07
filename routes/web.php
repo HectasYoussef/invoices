@@ -33,6 +33,8 @@ Auth::routes(["register"=>false]);
 
 Route::resource('invoices',InvoicesController::class);
 Route::get('section/{id}',[InvoicesController::class,"getproducts"]);
+Route::get('InvoicesDetails/{id}',[InvoicesController::class,"edit"]);
+
 Route::resource("products",ProductsController::class);
 
 Route::resource('sections',SectionsController::class);

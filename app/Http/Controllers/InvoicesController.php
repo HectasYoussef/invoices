@@ -19,7 +19,8 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        return view("invoices.invoices");
+        $invoices = invoices::all();
+        return view("invoices.invoices",compact("invoices"));
     }
 
     /**
@@ -112,7 +113,7 @@ class InvoicesController extends Controller
      */
     public function edit(invoices $invoices)
     {
-        //
+        return view('invoices.detaills_invoices');
     }
 
     /**

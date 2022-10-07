@@ -73,21 +73,37 @@ List Facture
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>2011/04/25</td>
+                                            <?php $i = 0; ?>
+                                            @foreach ($invoices as $invoice)
+                                            <?php $i++ ?>
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td>{{ $invoice->invoice_number }}</td>
+                                                <td>{{ $invoice->invoice_Date }}</td>
+                                                <td>{{ $invoice->Due_date }}</td>
+                                                <td>{{ $invoice->product }}</td>
+                                                <td>
+                                                    <a href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
+                                                </td>
+                                                <td>{{ $invoice->Discount }}</td>
+                                                <td>{{ $invoice->Rate_VAT }}</td>
+                                                <td>{{ $invoice->Value_VAT }}</td>
+                                                <td>{{ $invoice->Total }}</td>
+                                                <td>
+                                               @if ($invoice->Value_Status == 1)
+                                                   <span class="text-success">{{ $invoice->Status }}</span>
+                                               @elseif ($invoice->Value_Status == 2)
+                                                   <span class="text-danger">{{ $invoice->Status }}</span>
+                                               @else
+                                               <span class="text-danger">{{ $invoice->Status }}</span>
+                                                @endif
 
-                                                </tr>
+                                                </td>
+                                                <td>{{ $invoice->note }}</td>
+
+                                            </tr>
+
+                                            @endforeach
 
                                         </tbody>
                                     </table>

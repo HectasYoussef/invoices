@@ -23,6 +23,7 @@ Route::get('/', function () {
 });
 
 Auth::routes(["register"=>false]);
+//Auth::routes();
 //Route::get('/{page}', [AdminController::class,"index"]);
 
 

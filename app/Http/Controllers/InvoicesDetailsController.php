@@ -60,10 +60,10 @@ class InvoicesDetailsController extends Controller
      */
     public function edit($id)
     {
-        $invoices = invoices::where('id',$id)->first();
-        $details = invoices_details::where('id_Invoice',$id)->get();
-        $attachments = invoices_attachments::where('invoice_id',$id)->get();
-        return view('invoices.detaills_invoices',compact("invoices","details","attachments"));
+        $invoices = invoices::where('id', $id)->first();
+        $details = invoices_details::where('id_Invoice', $id)->get();
+        $attachments = invoices_attachments::where('invoice_id', $id)->get();
+        return view('invoices.detaills_invoices', compact("invoices", "details", "attachments"));
     }
 
     /**
@@ -88,25 +88,37 @@ class InvoicesDetailsController extends Controller
     {
         $invoices = invoices_attachments::findOrFail($request->id_file);
         $invoices->delete();
-        Storage::disk('public_locale')->delete($request->invoice_number.'/'.$request->file_name);
+        Storage::disk('public_locale')->delete($request->invoice_number . '/' . $request->file_name);
         session()->flash('delete', 'تم حذف المرفق بنجاح');
         return back();
     }
 
-    public function get_file($invoice_number,$file_name)
+    //public function get_file($invoice_number, $file_name)
 
+    // {
+
+
+    // $contents= Storage::disk('public_locale')->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
+    //return response()->download( $contents);
+    //  }
+
+    public function open_file($invoice_number, $file_name)
     {
-
-
-       // $contents= Storage::disk('public_locale')->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
-       //return response()->download( $contents);
+        $st = "Attachments";
+        $pathToFile = public_path($st . '/' . $invoice_number . '/' . $file_name);
+        return response()->file($pathToFile);
     }
 
-    public function open_file($invoice_number,$file_name){
-        //$files = Storage::disk('public_locale');
-        //return response()->file($files)->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
-        return asset('/public/Attachments/'.$invoice_number.'/'.$file_name);
-
+    public function get_file($invoice_number, $file_name)
+    {
+        $st = "Attachments";
+        $pathToFile = public_path($st . '/' . $invoice_number . '/' . $file_name);
+        return response()->download($pathToFile);
     }
-
+    // public function open_file($invoice_number, $file_name)
+    //{
+    //$files = Storage::disk('public_locale');
+    //return response()->file($files)->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
+    //   return asset('/public/Attachments/' . $invoice_number . '/' . $file_name);
+    // }
 }

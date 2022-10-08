@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class invoices extends Model
 {
@@ -30,4 +31,5 @@ class invoices extends Model
     {
         return $this->belongsTo(sections::class);
     }
+    use SoftDeletes;
 }

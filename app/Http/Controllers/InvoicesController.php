@@ -166,14 +166,25 @@ class InvoicesController extends Controller
 
 
 
-        if (!empty($Details->invoice_number)) {
+         if (!$id_page==2) {
 
-            Storage::disk('public_locale')->deleteDirectory($Details->invoice_number);
-        }
+            if (!empty($Details->invoice_number)) {
 
-        $invoices->forceDelete();
-        session()->flash('delete_invoice');
-        return redirect('/invoices');
+                Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+            }
+
+            $invoices->forceDelete();
+            session()->flash('delete_invoice');
+            return redirect('/invoices');
+
+            }
+
+            else {
+
+                $invoices->delete();
+                session()->flash('archive_invoice');
+                return redirect('/Archive');
+            }
 
 
     }
@@ -230,6 +241,24 @@ class InvoicesController extends Controller
         session()->flash('Status_Update');
         return redirect('/invoices');
 
+    }
+
+    public function Invoice_Paid()
+    {
+        $invoices = Invoices::where('Value_Status', 1)->get();
+        return view('invoices.invoices_paid',compact('invoices'));
+    }
+
+    public function Invoice_unPaid()
+    {
+        $invoices = Invoices::where('Value_Status',2)->get();
+        return view('invoices.invoices_unpaid',compact('invoices'));
+    }
+
+    public function Invoice_Partial()
+    {
+        $invoices = Invoices::where('Value_Status',3)->get();
+        return view('invoices.invoices_Partial',compact('invoices'));
     }
 
 }

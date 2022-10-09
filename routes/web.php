@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InvoiceAchiveController;
 use App\Http\Controllers\InvoicesAttachmentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
@@ -25,12 +26,15 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-//Auth::routes(["register"=>false]);
-Auth::routes();
+Auth::routes(["register"=>false]);
+//Auth::routes();
 //Route::get('/{page}', [AdminController::class,"index"]);
 
-
-
+Route::resource('Archive',InvoiceAchiveController::class);
+Route::get('Invoice_Paid',[InvoicesController::class,'Invoice_Paid']);
+Route::get('Invoice_UnPaid',[InvoicesController::class,'Invoice_UnPaid']);
+Route::get('Invoice_Partial',[InvoicesController::class,'Invoice_Partial']);
+Route::get('/edit_invoice/{id}', [InvoicesController::class,"edit"]);
 Route::post('/Status_Update/{id}', [InvoicesController::class,"Status_Update"])->name('Status_Update');
 Route::get('/show_invoice/{id}', [InvoicesController::class,"show"])->name("Status_show");
 Route::resource('InvoiceAttachments', InvoicesAttachmentsController::class);

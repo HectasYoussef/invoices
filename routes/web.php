@@ -25,14 +25,14 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes(["register"=>false]);
-//Auth::routes();
+//Auth::routes(["register"=>false]);
+Auth::routes();
 //Route::get('/{page}', [AdminController::class,"index"]);
 
 
 
-
-Route::get('/edit_invoice/{id}', [InvoicesController::class,"edit"]);
+Route::post('/Status_Update/{id}', [InvoicesController::class,"Status_Update"])->name('Status_Update');
+Route::get('/show_invoice/{id}', [InvoicesController::class,"show"])->name("Status_show");
 Route::resource('InvoiceAttachments', InvoicesAttachmentsController::class);
 Route::resource('invoices',InvoicesController::class);
 Route::get('section/{id}',[InvoicesController::class,"getproducts"]);

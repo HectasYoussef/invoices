@@ -47,7 +47,7 @@ List Facture
 
 </script>
 @endif
-    
+
 				<!-- row -->
 				<div class="row">
 
@@ -129,6 +129,13 @@ List Facture
                                                             data-toggle="modal" data-target="#delete_invoice"><i
                                                                 class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                                                     الفاتورة</a>
+
+                                                                    <a class="dropdown-item"
+                                                                    href="{{ URL::route('Status_show', [$invoice->id]) }}"><i
+                                                                        class=" text-success fas
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            fa-money-bill"></i>&nbsp;&nbsp;تغير
+                                                                    حالة
+                                                                    الدفع</a>
                                                     </div>
                                                 </td>
 

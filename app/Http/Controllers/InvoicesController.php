@@ -6,9 +6,13 @@ use App\Models\invoices;
 use App\Models\invoices_attachments;
 use App\Models\invoices_details;
 use App\Models\sections;
+use App\Models\User;
+use App\Notifications\AddInvoice;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class InvoicesController extends Controller
@@ -91,6 +95,9 @@ class InvoicesController extends Controller
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
 
+        $user = User::first();
+        Notification::send($user,new AddInvoice($invoice_id));
+        
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return back();
     }
@@ -238,6 +245,11 @@ class InvoicesController extends Controller
                 'user' => (Auth::user()->name),
             ]);
         }
+
+
+
+
+
         session()->flash('Status_Update');
         return redirect('/invoices');
 

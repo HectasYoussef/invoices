@@ -27,7 +27,7 @@ return view('users.show_users',compact('data'))
 public function create()
 {
 $roles = Role::pluck('name','name')->all();
-return view('users.create',compact('roles'));
+return view('users.Add_user',compact('roles'));
 }
 /**
 * Store a newly created resource in storage.
@@ -35,21 +35,21 @@ return view('users.create',compact('roles'));
 * @param  \Illuminate\Http\Request  $request
 * @return \Illuminate\Http\Response
 */
-public function store(Request $request)
-{
-$this->validate($request, [
-'name' => 'required',
-'email' => 'required|email|unique:users,email',
-'password' => 'required|same:confirm-password',
-'roles' => 'required'
-]);
-$input = $request->all();
-$input['password'] = Hash::make($input['password']);
-$user = User::create($input);
-$user->assignRole($request->input('roles'));
-return redirect()->route('users.index')
-->with('success','User created successfully');
-}
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles_name' => 'required'
+        ]);
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+        $user = User::create($input);
+        $user->assignRole($request->input('roles_name'));
+        return redirect()->route('users.index')
+        ->with('success', 'User created successfully');
+    }
 /**
 * Display the specified resource.
 *
@@ -108,8 +108,9 @@ return redirect()->route('users.index')
 * @param  int  $id
 * @return \Illuminate\Http\Response
 */
-public function destroy($id)
+public function destroy(Request $request)
 {
+$id=$request->user_id;
 User::find($id)->delete();
 return redirect()->route('users.index')
 ->with('success','User deleted successfully');

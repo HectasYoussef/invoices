@@ -30,7 +30,7 @@ Auth::routes(["register"=>false]);
 //Auth::routes();
 //Route::get('/{page}', [AdminController::class,"index"]);
 
-
+Route::get('export_invoices', [InvoicesController::class, 'export']);
 Route::get('Print_invoice/{id}',[InvoicesController::class,'Print_invoice']);
 Route::resource('Archive',InvoiceAchiveController::class);
 Route::get('Invoice_Paid',[InvoicesController::class,'Invoice_Paid']);

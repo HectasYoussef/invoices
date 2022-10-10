@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\InvoicesExport;
 use App\Models\invoices;
 use App\Models\invoices_attachments;
 use App\Models\invoices_details;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class InvoicesController extends Controller
 {
@@ -97,7 +100,7 @@ class InvoicesController extends Controller
 
         $user = User::first();
         Notification::send($user,new AddInvoice($invoice_id));
-        
+
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return back();
     }
@@ -277,6 +280,13 @@ class InvoicesController extends Controller
     {
         $invoices = invoices::where('id', $id)->first();
         return view('invoices.Print_invoice',compact('invoices'));
+    }
+
+
+
+    public function export()
+    {
+        return Excel::download(new InvoicesExport, 'invoices.xlsx');
     }
 
 }

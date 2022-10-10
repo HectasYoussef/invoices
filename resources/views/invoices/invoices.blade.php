@@ -141,6 +141,11 @@ List Facture
                                                                         data-toggle="modal" data-target="#Transfer_invoice"><i
                                                                             class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
                                                                         الارشيف</a>
+
+                                                                        <a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"><i
+                                                                            class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                                                        الفاتورة
+                                                                    </a>
                                                     </div>
                                                 </td>
 
@@ -217,7 +222,7 @@ List Facture
         </div>
     </div>
 
-     
+
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->

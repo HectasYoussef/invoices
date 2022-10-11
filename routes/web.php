@@ -62,8 +62,8 @@ Route::get('View_file/{invoice_number}/{file_name}',[InvoicesDetailsController::
 Route::resource("products",ProductsController::class);
 Route::post('delete_file' ,[InvoicesDetailsController::class,'destroy'])->name('delete_file');
 Route::resource('sections',SectionsController::class);
-
-Route::resource('/{page}',AdminController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/{page}',AdminController::class);
+
 
 

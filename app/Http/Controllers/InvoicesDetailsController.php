@@ -102,12 +102,17 @@ class InvoicesDetailsController extends Controller
     //return response()->download( $contents);
     //  }
 
-    public function open_file($invoice_number, $file_name)
+     public function open_file($invoice_number, $file_name)
     {
-        $st = "Attachments";
-        $pathToFile = public_path($st . '/' . $invoice_number . '/' . $file_name);
-        return response()->file($pathToFile);
-    }
+       $st = "Attachments";
+    //     $pathToFile = public_path($st . '/' . $invoice_number . '/' . $file_name);
+    //     return response()->file($pathToFile);
+
+        return response()->file($st . '/' . $invoice_number . '/' . $file_name);
+     }
+
+
+
 
     public function get_file($invoice_number, $file_name)
     {
@@ -116,9 +121,10 @@ class InvoicesDetailsController extends Controller
         return response()->download($pathToFile);
     }
     // public function open_file($invoice_number, $file_name)
-    //{
-    //$files = Storage::disk('public_locale');
-    //return response()->file($files)->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
-    //   return asset('/public/Attachments/' . $invoice_number . '/' . $file_name);
+    // {
+    // $files = Storage::disk('public_locale');
+    // // return response()->file($files)->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
+    // return response()->file($files->$invoice_number.'/'.$file_name);
+
     // }
 }

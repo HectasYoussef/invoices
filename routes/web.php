@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceAchiveController;
+use App\Http\Controllers\Invoices_Report;
 use App\Http\Controllers\InvoicesAttachmentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
@@ -39,8 +40,8 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
 
-
-
+Route::post('Search_invoices', [Invoices_Report::class,"Search_invoices"]);
+Route::get('invoices_report', [Invoices_Report::class,"index"]);
 Route::get('export_invoices', [InvoicesController::class, 'export']);
 Route::get('Print_invoice/{id}',[InvoicesController::class,'Print_invoice']);
 Route::resource('Archive',InvoiceAchiveController::class);

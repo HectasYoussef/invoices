@@ -8,6 +8,7 @@ use App\Models\invoices_attachments;
 use App\Models\invoices_details;
 use App\Models\sections;
 use App\Models\User;
+use App\Notifications\Add_invoice_new;
 use App\Notifications\AddInvoice;
 use Illuminate\Http\Request;
 
@@ -98,8 +99,13 @@ class InvoicesController extends Controller
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
 
+
         $user = User::first();
-        Notification::send($user,new AddInvoice($invoice_id));
+        $invoices = Invoices::latest()->first();
+        Notification::send($user,new Add_invoice_new($invoices));
+
+        //$user = User::first();
+        //Notification::send($user,new AddInvoice($invoice_id));
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return back();

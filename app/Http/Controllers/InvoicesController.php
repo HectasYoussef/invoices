@@ -100,7 +100,7 @@ class InvoicesController extends Controller
         }
 
 
-        $user = User::first();
+        $user = User::get();
         $invoices = Invoices::latest()->first();
         Notification::send($user,new Add_invoice_new($invoices));
 
@@ -294,5 +294,21 @@ class InvoicesController extends Controller
     {
         return Excel::download(new InvoicesExport, 'invoices.xlsx');
     }
+
+    public function MarkAsRead_all (Request $request)
+    {
+
+        $userUnreadNotification= auth()->user()->unreadNotifications;
+
+        if($userUnreadNotification) {
+            $userUnreadNotification->markAsRead();
+            return back();
+        }
+
+
+    }
+
+
+
 
 }
